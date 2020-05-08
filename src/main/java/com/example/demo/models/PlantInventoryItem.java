@@ -1,24 +1,27 @@
 package com.example.demo.models;
 
+
 import lombok.Data;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 @Data
-public class PlantReservation {
+public class PlantInventoryItem {
     @Id
     @GeneratedValue
     Long id;
 
-    @Embedded
-    BusinessPeriod schedule;
+    String serialNumber;
+
+    @Enumerated(EnumType.STRING)
+    EquipmentCondition equipmentCondition;
 
     @ManyToOne
-    PlantInventoryItem plant;
+    PlantInventoryEntry plantInfo;
 }
