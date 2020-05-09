@@ -9,8 +9,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,10 @@ public class PurchaseOrder {
     @GeneratedValue
     Long id;
 
+    @OneToMany
     List<PlantReservation> reservations;
+
+    @ManyToOne
     PlantInventoryEntry plant;
 
     @Embedded
@@ -31,6 +35,4 @@ public class PurchaseOrder {
 
     @Enumerated(EnumType.STRING)
     POStatus status;
-    LocalDate startDate;
-    LocalDate endDate;
 }

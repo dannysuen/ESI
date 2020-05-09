@@ -17,6 +17,7 @@ public class PlantInventoryEntry {
 
     String name;
     String description;
+
     @Column(precision=8, scale=2)
     BigDecimal price;
 }
