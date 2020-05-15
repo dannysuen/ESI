@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
-@Sql(scripts= "data.sql")
+@Sql(scripts= "plants-dataset.sql")
 @DirtiesContext(classMode=DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class InventoryRepositoryTest {
     @Autowired
@@ -24,13 +24,15 @@ public class InventoryRepositoryTest {
     PlantReservationRepository plantReservationRepository;
 
     @Test
+    public void queryByName() {
+        assertThat(plantInventoryEntryRepository.findByNameContaining("Mini").size()).isEqualTo(2);
+    }
+
+    @Test
     public void queryPlantCatalog() {
         assertThat(plantInventoryEntryRepository.count()).isEqualTo(14L);
     }
 
-    @Test
-    public void queryByName() {
-        assertThat(plantInventoryEntryRepository.findByNameContaining("Mini").size()).isEqualTo(2);
-    }
+
 
 }
